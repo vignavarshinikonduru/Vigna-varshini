@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vigna Varshini | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Mono:wght@300;400&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --cream: #f5f0e8;
+    --gold: #b8953c;
+    --gold-light: #d4af5a;
+    --muted: #6b6457;
+    --line: rgba(184,149,60,0.3);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.6;
+  }
+
+  header {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header-left {
+    background: var(--ink);
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+  }
+
+  .header-left::after {
+    content: 'VV';
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22vw;
+    color: rgba(255,255,255,0.03);
+    position: absolute;
+    bottom: -2rem;
+    left: -1rem;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .header-right {
+    background: var(--cream);
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    color: var(--cream);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    animation: fadeUp 1s ease forwards;
+  }
+
+  .tagline {
+    font-size: 0.9rem;
+    color: rgba(245,240,232,0.5);
+    font-weight: 300;
+    margin-top: 1.5rem;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .intro-text {
+    font-size: 1.4rem;
+    line-height: 1.7;
+    color: var(--ink);
+    font-weight: 300;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+
+  .intro-text strong { font-weight: 600; color: var(--gold); }
+
+  .scroll-hint {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    margin-top: auto;
+    padding-top: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-transform: uppercase;
+  }
+
+  .scroll-hint::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 2rem 3rem;
+    z-index: 100;
+    display: flex;
+    gap: 2rem;
+  }
+
+  nav a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cream);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  nav a:hover { color: var(--gold); }
+
+  section {
+    padding: 8rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .section-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    color: var(--line);
+    line-height: 1;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 0.5rem;
+  }
+
+  .cert-card {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cert-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gold);
+  }
+
+  .cert-icon {
+    font-size: 2.5rem;
+    width: 80px;
+    height: 80px;
+    border: 1px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .cert-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.05em;
+    color: var(--gold-light);
+  }
+
+  .cert-desc {
+    font-size: 1rem;
+    color: rgba(245,240,232,0.6);
+    margin-top: 0.5rem;
+    font-weight: 300;
+  }
+
+  .cert-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    border: 1px solid var(--gold);
+    padding: 0.3rem 0.7rem;
+    display: inline-block;
+    margin-top: 1rem;
+  }
+
+  .workshops-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .workshop-item {
+    border: 1px solid var(--line);
+    padding: 2rem;
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .workshop-item:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+  }
+
+  .workshop-item::before {
+    content: attr(data-num);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: var(--line);
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    line-height: 1;
+  }
+
+  .workshop-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .workshop-desc {
+    font-size: 0.95rem;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .skill-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    transition: all 0.3s;
+    cursor: default;
+  }
+
+  .skill-tag:hover { background: var(--ink); color: var(--cream); }
+
+  .skill-tag.highlight {
+    background: var(--ink);
+    color: var(--gold);
+    border-color: var(--ink);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .stat-item {
+    border-top: 1px solid var(--line);
+    padding: 1.5rem 0;
+  }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.25rem;
+  }
+
+  footer {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+    color: var(--gold);
+  }
+
+  .footer-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: rgba(245,240,232,0.4);
+  }
+
+  .gold-line {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  [data-reveal].visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    header { grid-template-columns: 1fr; }
+    .header-left { min-height: 60vh; padding: 3rem 2rem; }
+    .header-right { padding: 3rem 2rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    section { padding: 5rem 2rem; }
+    nav { display: none; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .cert-card { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="#certifications">Certs</a>
+  <a href="#workshops">Workshops</a>
+  <a href="#skills">Skills</a>
+</nav>
+
+<header>
+  <div class="header-left">
+    <span class="label">Portfolio · 2024</span>
+    <h1 class="name">Vigna<br>Varshini</h1>
+    <p class="tagline">// Student · Cloud Practitioner · Lifelong Learner</p>
+  </div>
+  <div class="header-right">
+    <span class="label">Introduction</span>
+    <p class="intro-text">
+      A passionate <strong>student</strong> building expertise at the intersection of cloud technology and continuous learning — certified by <strong>Amazon Web Services</strong> and driven by curiosity.
+    </p>
+    <div class="scroll-hint">Scroll to explore</div>
+  </div>
+</header>
+
+<div class="gold-line"></div>
+
+<section id="about">
+  <div class="section-header" data-reveal>
+    <span class="section-number">01</span>
+    <h2 class="section-title">Profile</h2>
+  </div>
+  <div class="about-grid">
+    <p class="about-text" data-reveal>
+      I am Vigna Varshini, a dedicated student with a strong foundation in cloud computing and a commitment to hands-on, practical learning. Through certifications and workshops, I continuously expand my technical expertise while developing the critical thinking skills that define a modern technologist.
+    </p>
+    <div>
+      <div class="stat-item" data-reveal>
+        <div class="stat-num">AWS</div>
+        <div class="stat-label">Cloud Certified</div>
+      </div>
+      <div class="stat-item" data-reveal>
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Curiosity & Growth Mindset</div>
+      </div>
+      <div class="stat-item" data-reveal>
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Commitment to Excellence</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-line"></div>
+
+<section id="certifications">
+  <div class="section-header" data-reveal>
+    <span class="section-number">02</span>
+    <h2 class="section-title">Certifications</h2>
+  </div>
+  <div class="cert-card" data-reveal>
+    <div class="cert-icon">☁️</div>
+    <div>
+      <div class="label">Amazon Web Services</div>
+      <div class="cert-name">AWS Certified Cloud Practitioner</div>
+      <div class="cert-desc">Demonstrated foundational knowledge of AWS Cloud services, architecture, security, pricing, and support. Validated understanding of core AWS services across compute, storage, database, and networking domains.</div>
+      <span class="cert-badge">✓ Verified Certification</span>
+    </div>
+  </div>
+</section>
+
+<div class="gold-line"></div>
+
+<section id="workshops">
+  <div class="section-header" data-reveal>
+    <span class="section-number">03</span>
+    <h2 class="section-title">Workshops</h2>
+  </div>
+  <div class="workshops-grid">
+    <div class="workshop-item" data-num="01" data-reveal>
+      <div class="workshop-title">Cloud Computing Fundamentals</div>
+      <div class="workshop-desc">Hands-on training covering core cloud concepts, infrastructure management, and real-world deployment scenarios.</div>
+    </div>
+    <div class="workshop-item" data-num="02" data-reveal>
+      <div class="workshop-title">Technical Skills Development</div>
+      <div class="workshop-desc">Practical sessions focused on building and applying industry-relevant technical competencies through guided exercises.</div>
+    </div>
+    <div class="workshop-item" data-num="03" data-reveal>
+      <div class="workshop-title">Innovation & Problem Solving</div>
+      <div class="workshop-desc">Collaborative workshops designed to foster creative thinking, analytical skills, and effective teamwork approaches.</div>
+    </div>
+    <div class="workshop-item" data-num="04" data-reveal>
+      <div class="workshop-title">Professional Development</div>
+      <div class="workshop-desc">Industry-oriented sessions covering career readiness, professional communication, and best practices in tech.</div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-line"></div>
+
+<section id="skills">
+  <div class="section-header" data-reveal>
+    <span class="section-number">04</span>
+    <h2 class="section-title">Skills</h2>
+  </div>
+  <div class="skills-container" data-reveal>
+    <span class="skill-tag highlight">AWS Cloud</span>
+    <span class="skill-tag highlight">Cloud Architecture</span>
+    <span class="skill-tag">Problem Solving</span>
+    <span class="skill-tag">Technical Learning</span>
+    <span class="skill-tag">Cloud Security</span>
+    <span class="skill-tag">Networking Fundamentals</span>
+    <span class="skill-tag">Team Collaboration</span>
+    <span class="skill-tag">Continuous Learning</span>
+    <span class="skill-tag">Critical Thinking</span>
+    <span class="skill-tag">Communication</span>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="footer-name">Vigna Varshini</div>
+    <div class="footer-note">Student · AWS Certified · Workshop Attendee</div>
+  </div>
+  <div class="footer-note">Built with dedication &amp; purpose</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('[data-reveal]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => observer.observe(el));
+
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > window.innerHeight * 0.9) {
+      nav.querySelectorAll('a').forEach(a => a.style.color = '');
+    } else {
+      nav.querySelectorAll('a').forEach(a => a.style.color = '#f5f0e8');
+    }
+  });
+</script>
+</body>
+</html>
